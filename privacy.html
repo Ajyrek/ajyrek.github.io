@@ -3,92 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <title>Privacy Policy – Cronance</title>
+    <style>
+        #language-switcher {
+            margin: 16px 0;
+        }
+        #language-switcher button {
+            margin-right: 8px;
+            padding: 6px 10px;
+            cursor: pointer;
+        }
+        .policy {
+            display: none;
+        }
+    </style>
+    <script>
+        function showLang(lang) {
+            const blocks = document.querySelectorAll('.policy');
+            blocks.forEach(b => b.style.display = 'none');
+            const active = document.getElementById('policy-' + lang);
+            if (active) active.style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            showLang('en'); // domyślnie angielski
+        });
+    </script>
 </head>
 <body>
-<h1>Privacy Policy for the Cronance App</h1>
 
-<p>This Privacy Policy applies to the mobile application <strong>Cronance</strong>
-(package name <strong>com.ajyr.green.cronance</strong>).</p>
+<div id="language-switcher">
+    <button type="button" onclick="showLang('en')">English</button>
+    <button type="button" onclick="showLang('pl')">Polski</button>
+    <button type="button" onclick="showLang('uk')">Українська</button>
+</div>
 
-<h2>1. General information</h2>
-<p>Cronance is a personal finance app designed for private use. All financial
-data entered in the app are intended to stay on the user’s device and are not
-sent to the app developer or to any external servers.</p>
+<!-- ENGLISH -->
+<div id="policy-en" class="policy" lang="en">
+    <h1>Privacy Policy for the Cronance App</h1>
 
-<h2>2. Data processed by the app</h2>
-<ul>
-    <li>The developer of the app does not collect or process any personal data
-        of the user on their own servers.</li>
-    <li>All financial entries, categories, notes and other information entered
-        in the app are stored locally on the user’s device.</li>
-    <li>These data are not automatically transmitted or shared with the developer
-        or with any third parties. They remain private and under the user’s control.</li>
-</ul>
+    <p>This Privacy Policy applies to the mobile application <strong>Cronance</strong>
+        (package name <strong>com.ajyr.green.cronance</strong>).</p>
 
-<h2>3. Privacy of user entries</h2>
-<ul>
-    <li>Financial entries and other data entered in the app are private and are
-        used only to provide the app’s core functionality on the device.</li>
-    <li>The user has full control over these data and can add, edit or delete
-        them at any time.</li>
-    <li>Export and import of data (backups) use files stored on the user’s device
-        or in locations chosen by the user (for example ZIP backup files). The
-        app relies on the system file picker, and only the files explicitly
-        selected by the user are accessed. The content of these files is not
-        sent to the developer.</li>
-    <li>Photos attached to entries are stored locally and are treated as part of
-        the user’s private data inside the app.</li>
-</ul>
+    <h2>1. General information</h2>
+    <p>Cronance is a personal finance app designed for private use. All financial
+        data entered in the app are intended to stay on the user’s device and are not
+        sent to the app developer or to any external servers.</p>
 
-<h2>4. Ads and the crocodile mini-game</h2>
-<ul>
-    <li>The app contains an additional tab with a mini-game (taking care of a
-        virtual crocodile), where ads may be displayed.</li>
-    <li>These ads may be served by external providers (for example Google AdMob).
-        Such providers may collect certain technical information from the device
-        in order to show and measure ads, in line with their own privacy policies
-        (for example advertising identifiers, information about ad impressions).</li>
-    <li>The developer of Cronance does not receive the financial entries or
-        personal content created in the app, and does not link those private
-        entries with any advertising data.</li>
-</ul>
+    <h2>2. Data processed by the app</h2>
+    <ul>
+        <li>The developer of the app does not collect or process any personal data
+            of the user on their own servers.</li>
+        <li>All financial entries, categories, notes and other information entered
+            in the app are stored locally on the user’s device.</li>
+        <li>These data are not automatically transmitted or shared with the developer
+            or with any third parties. They remain private and under the user’s control.</li>
+    </ul>
 
-<h2>5. App permissions</h2>
-<p>By default, the app does not require any special Android
-permissions. All financial data and app settings are stored in the app’s private
-internal storage area on the device.</p>
+    <h2>3. Privacy of user entries</h2>
+    <ul>
+        <li>Financial entries and other data entered in the app are private and are
+            used only to provide the app’s core functionality on the device.</li>
+        <li>The user has full control over these data and can add, edit or delete
+            them at any time.</li>
+        <li>Export and import of data (backups) use files stored on the user’s device
+            or in locations chosen by the user (for example ZIP backup files). The
+            app relies on the system file picker, and only the files explicitly
+            selected by the user are accessed. The content of these files is not
+            sent to the developer.</li>
+        <li>Photos attached to entries are stored locally and are treated as part of
+            the user’s private data inside the app.</li>
+    </ul>
 
-<p>Certain permissions may be requested optionally in order to use additional
-features:</p>
-<ul>
-    <li><strong>Camera permission</strong> – if the user chooses to attach a photo
-        to an entry directly from the camera, the app may request access to the
-        device’s camera. This permission is used only to take photos that the
-        user explicitly decides to save in the app. The photos are stored locally
-        and are not sent to the developer.</li>
-    <li><strong>Access to files via the system file picker</strong> – when exporting
-        or importing backups, or when choosing an existing image from the device,
-        the app uses the system file picker. In this case the app only receives
-        access to the specific file(s) selected by the user and does not obtain
-        broader access to the device’s storage.</li>
-</ul>
+    <h2>4. Ads and the crocodile mini-game</h2>
+    <ul>
+        <li>The app contains an additional tab with a mini-game (taking care of a
+            virtual crocodile), where ads may be displayed.</li>
+        <li>These ads may be served by external providers (for example Google AdMob).
+            Such providers may collect certain technical information from the device
+            in order to show and measure ads, in line with their own privacy policies
+            (for example advertising identifiers, information about ad impressions).</li>
+        <li>The developer of Cronance does not receive the financial entries or
+            personal content created in the app, and does not link those private
+            entries with any advertising data.</li>
+    </ul>
 
-<p>The app does not request permissions to access contacts, location, call logs
-or other categories of personal data.</p>
+    <h2>5. App permissions</h2>
+    <p>By default, the app does not require any special Android
+        permissions. All financial data and app settings are stored in the app’s private
+        internal storage area on the device.</p>
 
-<h2>6. User rights</h2>
-<ul>
-    <li>The user can delete the data stored in the app at any time, for example
-        by removing entries or uninstalling the app from the device.</li>
-    <li>If you have any questions about privacy, you can contact the developer
-        using the email address provided on Google Play.</li>
-</ul>
+    <p>Certain permissions may be requested optionally in order to use additional
+        features:</p>
+    <ul>
+        <li><strong>Camera permission</strong> – if the user chooses to attach a photo
+            to an entry directly from the camera, the app may request access to the
+            device’s camera. This permission is used only to take photos that the
+            user explicitly decides to save in the app. The photos are stored locally
+            and are not sent to the developer.</li>
+        <li><strong>Access to files via the system file picker</strong> – when exporting
+            or importing backups, or when choosing an existing image from the device,
+            the app uses the system file picker. In this case the app only receives
+            access to the specific file(s) selected by the user and does not obtain
+            broader access to the device’s storage.</li>
+    </ul>
 
-<h2>7. Changes to this Privacy Policy</h2>
-<p>This Privacy Policy may be updated from time to time, for example to reflect
-changes in the law or in the functionality of the app. The updated version will
-be published at the same URL.</p>
+    <p>The app does not request permissions to access contacts, location, call logs
+        or other categories of personal data.</p>
 
-<p>Last updated: 2025-12-08</p>
+    <h2>6. User rights</h2>
+    <ul>
+        <li>The user can delete the data stored in the app at any time, for example
+            by removing entries or uninstalling the app from the device.</li>
+        <li>If you have any questions about privacy, you can contact the developer
+            using the email address provided on Google Play.</li>
+    </ul>
+
+    <h2>7. Changes to this Privacy Policy</h2>
+    <p>This Privacy Policy may be updated from time to time, for example to reflect
+        changes in the law or in the functionality of the app. The updated version will
+        be published at the same URL.</p>
+
+    <p>Last updated: 2025-12-08</p>
+</div>
+
+<!-- POLISH -->
+<div id="policy-pl" class="policy" lang="pl">
+    <h1>Polityka prywatności aplikacji Cronance</h1>
+
+    <p>Niniejsza Polityka prywatności dotyczy aplikacji mobilnej <strong>Cronance</strong>
+        (nazwa pakietu <strong>com.ajyr.green.cronance</strong>).</p>
+
+    <h2>1. Informacje ogólne</h2>
+    <p>Cronance jest aplikacją do zarządzania finansami osobistymi przeznaczoną do użytku
+        prywatnego. Wszystkie dane finansowe wprowadzane do aplikacji są przeznaczone
+        do przechowywania wyłącznie na urządzeniu użytkownika i nie są wysyłane do
+        twórcy aplikacji ani na żadne zewnętrzne serwery.</p>
+
+    <h2>2. Dane przetwarzane przez aplikację</h2>
+    <ul>
+        <li>Twórca aplikacji nie zbiera ani nie przetwarza danych osobowych użytkownika
+            na własnych serwerach.</li>
+        <li>Wszystkie wpisy finansowe, kategorie, notatki i inne informacje wprowadzane
+            w aplikacji są przechowywane lokalnie na urządzeniu użytkownika.</li>
+        <li>Dane te nie są automatycznie przekazywane ani udostępniane twórcy
+            aplikacji ani żadnym podmiotom trzecim. Pozostają prywatne i pod kontrolą
+            użytkownika.</li>
+    </ul>
+
+    <h2>3. Prywatność wpisów użytkownika</h2>
+    <ul>
+        <li>Wpisy finansowe i inne dane wprowadzane w aplikacji są prywatne i służą
+            wyłącznie do zapewnienia podstawowego działania aplikacji na urządzeniu.</li>
+        <li>Użytkownik ma pełną kontrolę nad tymi danymi i może je w dowolnym momencie
+            dodawać, edytować lub usuwać.</li>
+        <li>Eksport i import danych (kopie zapasowe) wykorzystują pliki przechowywane
+            na urządzeniu użytkownika lub w lokalizacjach wybranych przez użytkownika
+            (np. pliki kopii zapasowych ZIP). Aplikacja korzysta z systemowego selektora
+            plików i uzyskuje dostęp wyłącznie do plików, które użytkownik wskaże
+            ręcznie. Zawartość tych plików nie jest wysyłana do twórcy aplikacji.</li>
+        <li>Zdjęcia dołączane do wpisów są przechowywane lokalnie i traktowane jako
+            element prywatnych danych użytkownika w aplikacji.</li>
+    </ul>
+
+    <h2>4. Reklamy i mini-gra z krokodylem</h2>
+    <ul>
+        <li>Aplikacja zawiera dodatkową zakładkę z mini-grą (opieka nad wirtualnym
+            krokodylem), w której mogą być wyświetlane reklamy.</li>
+        <li>Reklamy mogą być dostarczane przez zewnętrznych dostawców (np. Google AdMob).
+            Tacy dostawcy mogą gromadzić określone informacje techniczne z urządzenia
+            w celu wyświetlania i mierzenia skuteczności reklam, zgodnie z własnymi
+            politykami prywatności (np. identyfikatory reklamowe, informacje o wyświetleniach reklam).</li>
+        <li>Twórca Cronance nie otrzymuje wpisów finansowych ani treści osobistych
+            tworzonych w aplikacji i nie łączy tych prywatnych danych z danymi
+            reklamowymi.</li>
+    </ul>
+
+    <h2>5. Uprawnienia aplikacji</h2>
+    <p>Domyślnie aplikacja nie wymaga żadnych specjalnych (tzw. „niebezpiecznych”)
+        uprawnień systemu Android. Wszystkie dane finansowe oraz ustawienia aplikacji
+        przechowywane są w prywatnej pamięci wewnętrznej aplikacji na urządzeniu.</p>
+
+    <p>Niektóre uprawnienia mogą być opcjonalnie wymagane w celu skorzystania z
+        dodatkowych funkcji:</p>
+    <ul>
+        <li><strong>Dostęp do aparatu</strong> – jeśli użytkownik zdecyduje się dołączyć
+            zdjęcie do wpisu bezpośrednio z aparatu, aplikacja może poprosić o dostęp
+            do aparatu urządzenia. Uprawnienie to jest wykorzystywane wyłącznie do
+            wykonania zdjęć, które użytkownik świadomie zapisze w aplikacji. Zdjęcia
+            są przechowywane lokalnie i nie są wysyłane do twórcy.</li>
+        <li><strong>Dostęp do plików przez systemowy selektor plików</strong> – podczas
+            eksportu lub importu kopii zapasowych lub wybierania istniejącego obrazu
+            z urządzenia aplikacja korzysta z systemowego selektora plików. W takim
+            przypadku aplikacja otrzymuje dostęp wyłącznie do konkretnych plików
+            wskazanych przez użytkownika i nie uzyskuje szerszego dostępu do pamięci
+            urządzenia.</li>
+    </ul>
+
+    <p>Aplikacja nie żąda uprawnień dostępu do kontaktów, lokalizacji, historii
+        połączeń ani innych kategorii danych osobistych.</p>
+
+    <h2>6. Prawa użytkownika</h2>
+    <ul>
+        <li>Użytkownik może w dowolnym momencie usunąć dane przechowywane w aplikacji,
+            na przykład usuwając wpisy lub odinstalowując aplikację z urządzenia.</li>
+        <li>W przypadku pytań dotyczących prywatności użytkownik może skontaktować się
+            z twórcą aplikacji za pośrednictwem adresu e-mail podanego w sklepie
+            Google Play.</li>
+    </ul>
+
+    <h2>7. Zmiany w Polityce prywatności</h2>
+    <p>Niniejsza Polityka prywatności może być okresowo aktualizowana, na przykład
+        w celu odzwierciedlenia zmian w przepisach prawa lub w funkcjonalności
+        aplikacji. Zaktualizowana wersja będzie publikowana pod tym samym adresem
+        URL.</p>
+
+    <p>Ostatnia aktualizacja: 2025-12-08</p>
+</div>
+
+<!-- UKRAINIAN -->
+<div id="policy-uk" class="policy" lang="uk">
+    <h1>Політика конфіденційності додатка Cronance</h1>
+
+    <p>Ця Політика конфіденційності застосовується до мобільного додатка
+        <strong>Cronance</strong> (ім’я пакета <strong>com.ajyr.green.cronance</strong>).</p>
+
+    <h2>1. Загальна інформація</h2>
+    <p>Cronance — це додаток для особистих фінансів, розроблений для приватного
+        використання. Усі фінансові дані, внесені в додаток, призначені для зберігання
+        лише на пристрої користувача і не надсилаються розробнику додатка або на
+        будь-які зовнішні сервери.</p>
+
+    <h2>2. Дані, які обробляє додаток</h2>
+    <ul>
+        <li>Розробник додатка не збирає та не обробляє персональні дані користувача
+            на власних серверах.</li>
+        <li>Усі фінансові записи, категорії, нотатки та інша інформація, внесена
+            в додаток, зберігаються локально на пристрої користувача.</li>
+        <li>Ці дані не передаються автоматично та не надаються розробнику або будь-яким
+            третім сторонам. Вони залишаються приватними та під контролем користувача.</li>
+    </ul>
+
+    <h2>3. Конфіденційність записів користувача</h2>
+    <ul>
+        <li>Фінансові записи та інші дані, внесені в додаток, є приватними і
+            використовуються лише для забезпечення основної функціональності
+            додатка на пристрої.</li>
+        <li>Користувач має повний контроль над цими даними і може в будь-який момент
+            додавати, редагувати або видаляти їх.</li>
+        <li>Експорт та імпорт даних (резервні копії) використовують файли, що
+            зберігаються на пристрої користувача або в місцях, обраних користувачем
+            (наприклад, ZIP-файли резервних копій). Додаток використовує системний
+            вибір файлів і отримує доступ лише до файлів, які користувач явно
+            обирає. Вміст цих файлів не надсилається розробнику.</li>
+        <li>Фотографії, прикріплені до записів, зберігаються локально і розглядаються
+            як частина приватних даних користувача в додатку.</li>
+    </ul>
+
+    <h2>4. Реклама та міні-гра з крокодилом</h2>
+    <ul>
+        <li>Додаток містить додаткову вкладку з міні-грою (догляд за віртуальним
+            крокодилом), у якій може відображатися реклама.</li>
+        <li>Реклама може надаватися зовнішніми постачальниками (наприклад, Google AdMob).
+            Такі постачальники можуть збирати певну технічну інформацію з пристрою
+            для показу та вимірювання ефективності реклами відповідно до власних
+            політик конфіденційності (наприклад, рекламні ідентифікатори, інформація
+            про покази реклами).</li>
+        <li>Розробник Cronance не отримує фінансові записи або особистий контент,
+            створений у додатку, і не пов’язує ці приватні дані з рекламними даними.</li>
+    </ul>
+
+    <h2>5. Дозволи додатка</h2>
+    <p>За замовчуванням додаток не вимагає жодних спеціальних (“небезпечних”)
+        дозволів Android. Усі фінансові дані та налаштування додатка зберігаються
+        у приватній внутрішній пам’яті додатка на пристрої.</p>
+
+    <p>Деякі дозволи можуть запитуватися додатково для використання певних функцій:</p>
+    <ul>
+        <li><strong>Доступ до камери</strong> – якщо користувач вирішує додати фото
+            до запису безпосередньо з камери, додаток може запитати доступ до камери
+            пристрою. Цей дозвіл використовується лише для створення фотографій, які
+            користувач свідомо зберігає в додатку. Фотографії зберігаються локально
+            і не надсилаються розробнику.</li>
+        <li><strong>Доступ до файлів через системний вибір файлів</strong> – під час
+            експорту або імпорту резервних копій, а також при виборі наявного зображення
+            з пристрою додаток використовує системний вибір файлів. У такому випадку
+            додаток отримує доступ лише до конкретних файлів, обраних користувачем,
+            і не отримує ширшого доступу до пам’яті пристрою.</li>
+    </ul>
+
+    <p>Додаток не запитує дозволів на доступ до контактів, місцезнаходження, журналу
+        дзвінків або інших категорій персональних даних.</p>
+
+    <h2>6. Права користувача</h2>
+    <ul>
+        <li>Користувач може в будь-який момент видалити дані, що зберігаються в додатку,
+            наприклад, видаливши записи або видаливши додаток з пристрою.</li>
+        <li>Якщо у вас є запитання щодо конфіденційності, ви можете зв’язатися з
+            розробником за адресою електронної пошти, вказаною в Google Play.</li>
+    </ul>
+
+    <h2>7. Зміни до цієї Політики конфіденційності</h2>
+    <p>Ця Політика конфіденційності може періодично оновлюватися, наприклад, щоб
+        відобразити зміни в законодавстві або у функціональності додатка. Оновлена
+        версія буде опублікована за тією самою URL-адресою.</p>
+
+    <p>Останнє оновлення: 2025-12-08</p>
+</div>
+
 </body>
 </html>
