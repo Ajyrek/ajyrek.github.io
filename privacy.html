@@ -33,7 +33,11 @@ sent to the app developer or to any external servers.</p>
         them at any time.</li>
     <li>Export and import of data (backups) use files stored on the user’s device
         or in locations chosen by the user (for example ZIP backup files). The
-        content of these files is not sent to the developer.</li>
+        app relies on the system file picker, and only the files explicitly
+        selected by the user are accessed. The content of these files is not
+        sent to the developer.</li>
+    <li>Photos attached to entries are stored locally and are treated as part of
+        the user’s private data inside the app.</li>
 </ul>
 
 <h2>4. Ads and the crocodile mini-game</h2>
@@ -50,9 +54,27 @@ sent to the app developer or to any external servers.</p>
 </ul>
 
 <h2>5. App permissions</h2>
-<p>The app may use certain system permissions (for example access to device
-storage) solely to save and read the user’s own data, such as photos attached
-to entries or backup/export files. These data are not sent to the developer.</p>
+<p>By default, the app does not require any special (“dangerous”) Android
+permissions. All financial data and app settings are stored in the app’s private
+internal storage area on the device.</p>
+
+<p>Certain permissions may be requested optionally in order to use additional
+features:</p>
+<ul>
+    <li><strong>Camera permission</strong> – if the user chooses to attach a photo
+        to an entry directly from the camera, the app may request access to the
+        device’s camera. This permission is used only to take photos that the
+        user explicitly decides to save in the app. The photos are stored locally
+        and are not sent to the developer.</li>
+    <li><strong>Access to files via the system file picker</strong> – when exporting
+        or importing backups, or when choosing an existing image from the device,
+        the app uses the system file picker. In this case the app only receives
+        access to the specific file(s) selected by the user and does not obtain
+        broader access to the device’s storage.</li>
+</ul>
+
+<p>The app does not request permissions to access contacts, location, call logs
+or other categories of personal data.</p>
 
 <h2>6. User rights</h2>
 <ul>
