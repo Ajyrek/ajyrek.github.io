@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Cronance - Menedżer Finansowy</title>
 
-    <!-- Ładny, nowoczesny font -->
+    <!-- Nowoczesny font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,22 +25,24 @@
       }
 
       * { box-sizing: border-box; }
+
       body {
         margin: 0;
         min-height: 100vh;
         display: grid;
         place-items: center;
-        background: radial-gradient(900px 400px at 50% 20%, rgba(96,165,250,.20), transparent),
-                    radial-gradient(700px 350px at 20% 80%, rgba(167,139,250,.14), transparent),
-                    var(--bg);
-        color: var(--text);
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         padding: 24px;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(900px 400px at 50% 20%, rgba(96,165,250,.20), transparent),
+          radial-gradient(700px 350px at 20% 80%, rgba(167,139,250,.14), transparent),
+          var(--bg);
       }
 
       .card {
         width: min(720px, 100%);
-        background: rgba(17,24,39,0.8);
+        background: rgba(17,24,39,0.85);
         border: 1px solid rgba(255,255,255,0.08);
         border-radius: 18px;
         padding: 28px;
@@ -50,11 +52,9 @@
 
       .top {
         display: flex;
-        gap: 12px;
         justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        margin-bottom: 18px;
+        align-items: flex-start;
+        gap: 16px;
       }
 
       h1 {
@@ -74,7 +74,7 @@
       .lang {
         display: inline-flex;
         gap: 10px;
-        flex-wrap: wrap;
+        flex-shrink: 0;
       }
 
       .lang button {
@@ -88,15 +88,17 @@
         font-weight: 600;
         transition: transform .08s ease, background .2s ease, border-color .2s ease;
       }
+
       .lang button:hover { background: var(--btnHover); }
       .lang button:active { transform: translateY(1px); }
+
       .lang button[aria-pressed="true"] {
         border-color: rgba(96,165,250,0.55);
         box-shadow: 0 0 0 4px rgba(96,165,250,0.14);
       }
 
       .linkBox {
-        margin-top: 18px;
+        margin-top: 22px;
         padding: 16px;
         border-radius: 14px;
         background: rgba(0,0,0,0.25);
@@ -113,11 +115,24 @@
         text-decoration: none;
         font-weight: 700;
       }
+
       a.store:hover { text-decoration: underline; }
 
       .small {
         color: var(--muted);
         font-size: 12px;
+      }
+
+      /* 🔧 KLUCZOWA POPRAWKA – mobile */
+      @media (max-width: 640px) {
+        .top {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .lang {
+          margin-top: 6px;
+        }
       }
     </style>
   </head>
@@ -130,10 +145,10 @@
           <p class="subtitle" id="subtitle">Pobierz aplikację z Google Play.</p>
         </div>
 
-        <div class="lang" role="group" aria-label="Wybierz język">
-          <button id="btn-pl" type="button" data-lang="pl" aria-pressed="true">PL</button>
-          <button id="btn-en" type="button" data-lang="en" aria-pressed="false">EN</button>
-          <button id="btn-ua" type="button" data-lang="ua" aria-pressed="false">UA</button>
+        <div class="lang" role="group" aria-label="Wybór języka">
+          <button type="button" data-lang="pl" aria-pressed="true">PL</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+          <button type="button" data-lang="ua" aria-pressed="false">UA</button>
         </div>
       </div>
 
@@ -152,27 +167,27 @@
     </main>
 
     <script>
-      const translations = {
+      const t = {
         pl: {
           title: "Cronance – Menedżer Finansowy",
           subtitle: "Pobierz aplikację z Google Play.",
-          linkText: "Otwórz w Google Play",
+          link: "Otwórz w Google Play",
           hint: "Link otworzy się w nowej karcie.",
-          pageLang: "pl"
+          lang: "pl"
         },
         en: {
           title: "Cronance – Finance Manager",
           subtitle: "Get the app on Google Play.",
-          linkText: "Open on Google Play",
+          link: "Open on Google Play",
           hint: "The link will open in a new tab.",
-          pageLang: "en"
+          lang: "en"
         },
         ua: {
           title: "Cronance — Фінансовий менеджер",
           subtitle: "Завантажте застосунок у Google Play.",
-          linkText: "Відкрити в Google Play",
+          link: "Відкрити в Google Play",
           hint: "Посилання відкриється в новій вкладці.",
-          pageLang: "uk"
+          lang: "uk"
         }
       };
 
@@ -180,32 +195,28 @@
       const subtitleEl = document.getElementById("subtitle");
       const linkEl = document.getElementById("storeLink");
       const hintEl = document.getElementById("hint");
-      const buttons = Array.from(document.querySelectorAll(".lang button"));
+      const buttons = document.querySelectorAll(".lang button");
 
       function setLang(lang) {
-        const t = translations[lang] || translations.pl;
+        const d = t[lang] || t.pl;
+        titleEl.textContent = d.title;
+        subtitleEl.textContent = d.subtitle;
+        linkEl.textContent = d.link;
+        hintEl.textContent = d.hint;
+        document.documentElement.lang = d.lang;
 
-        titleEl.textContent = t.title;
-        subtitleEl.textContent = t.subtitle;
-        linkEl.textContent = t.linkText;
-        hintEl.textContent = t.hint;
+        buttons.forEach(b =>
+          b.setAttribute("aria-pressed", b.dataset.lang === lang)
+        );
 
-        document.documentElement.lang = t.pageLang;
-
-        buttons.forEach((b) => {
-          b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false");
-        });
-
-        // opcjonalnie: zapamiętaj wybór
         localStorage.setItem("cronance_lang", lang);
       }
 
-      // kliknięcia
-      buttons.forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
+      buttons.forEach(b =>
+        b.addEventListener("click", () => setLang(b.dataset.lang))
+      );
 
-      // start: zapamiętany język albo PL
-      const saved = localStorage.getItem("cronance_lang");
-      setLang(saved || "pl");
+      setLang(localStorage.getItem("cronance_lang") || "pl");
     </script>
   </body>
 </html>
