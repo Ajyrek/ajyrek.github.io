@@ -1,222 +1,244 @@
 <!doctype html>
 <html lang="pl">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Cronance - Menedżer Finansowy</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cronance – Menedżer Finansowy</title>
 
-    <!-- Nowoczesny font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
 
-    <style>
-      :root {
-        --bg: #0b0f19;
-        --card: #111827;
-        --text: #e5e7eb;
-        --muted: #9ca3af;
-        --btn: #1f2937;
-        --btnHover: #263244;
-        --accent: #60a5fa;
-      }
+  <style>
+    :root {
+      --bg:#0b0f19; --card:#111827; --text:#e5e7eb;
+      --muted:#9ca3af; --accent:#60a5fa; --border:rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; padding:24px; min-height:100vh;
+      display:grid; place-items:center;
+      font-family:Inter,system-ui,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 400px at 50% 20%, rgba(96,165,250,.20), transparent),
+        radial-gradient(700px 350px at 20% 80%, rgba(167,139,250,.14), transparent),
+        var(--bg);
+    }
+    .card{
+      width:min(800px,100%);
+      background:rgba(17,24,39,.88);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:28px;
+      box-shadow:0 20px 60px rgba(0,0,0,.45);
+    }
+    .top{
+      display:flex; justify-content:space-between; gap:16px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(22px,3vw,34px);
+      font-weight:800;
+    }
+    .subtitle{color:var(--muted); margin-top:8px}
+    .lang{display:flex; gap:8px}
+    .lang button{
+      background:#1f2937; color:var(--text);
+      border:1px solid var(--border);
+      border-radius:10px; padding:8px 12px;
+      font-weight:600; cursor:pointer;
+    }
+    .lang button[aria-pressed="true"]{
+      border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(96,165,250,.2);
+    }
 
-      * { box-sizing: border-box; }
+    .content{margin-top:24px; line-height:1.65}
+    .content h2{
+      margin-top:24px;
+      font-size:18px;
+      font-weight:700;
+    }
+    .content ul{
+      margin:12px 0 0 18px;
+      padding:0;
+    }
+    .content li{margin-bottom:8px}
+    .storeBox{
+      margin-top:28px;
+      padding:16px;
+      border-radius:14px;
+      background:rgba(0,0,0,.25);
+      border:1px solid var(--border);
+    }
+    .storeBox a{
+      color:var(--accent);
+      font-weight:700;
+      text-decoration:none;
+    }
+    .storeBox a:hover{text-decoration:underline}
 
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        padding: 24px;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        color: var(--text);
-        background:
-          radial-gradient(900px 400px at 50% 20%, rgba(96,165,250,.20), transparent),
-          radial-gradient(700px 350px at 20% 80%, rgba(167,139,250,.14), transparent),
-          var(--bg);
-      }
+    @media (max-width:640px){
+      .top{flex-direction:column}
+    }
+  </style>
+</head>
 
-      .card {
-        width: min(720px, 100%);
-        background: rgba(17,24,39,0.85);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 18px;
-        padding: 28px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.45);
-        backdrop-filter: blur(10px);
-      }
-
-      .top {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: 16px;
-      }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(22px, 3.2vw, 34px);
-        line-height: 1.15;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-      }
-
-      .subtitle {
-        margin: 10px 0 0;
-        color: var(--muted);
-        font-size: 14px;
-      }
-
-      .lang {
-        display: inline-flex;
-        gap: 10px;
-        flex-shrink: 0;
-      }
-
-      .lang button {
-        appearance: none;
-        border: 1px solid rgba(255,255,255,0.10);
-        background: var(--btn);
-        color: var(--text);
-        padding: 10px 12px;
-        border-radius: 12px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: transform .08s ease, background .2s ease, border-color .2s ease;
-      }
-
-      .lang button:hover { background: var(--btnHover); }
-      .lang button:active { transform: translateY(1px); }
-
-      .lang button[aria-pressed="true"] {
-        border-color: rgba(96,165,250,0.55);
-        box-shadow: 0 0 0 4px rgba(96,165,250,0.14);
-      }
-
-      .linkBox {
-        margin-top: 22px;
-        padding: 16px;
-        border-radius: 14px;
-        background: rgba(0,0,0,0.25);
-        border: 1px solid rgba(255,255,255,0.08);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      a.store {
-        color: var(--accent);
-        text-decoration: none;
-        font-weight: 700;
-      }
-
-      a.store:hover { text-decoration: underline; }
-
-      .small {
-        color: var(--muted);
-        font-size: 12px;
-      }
-
-      /* 🔧 KLUCZOWA POPRAWKA – mobile */
-      @media (max-width: 640px) {
-        .top {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .lang {
-          margin-top: 6px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <main class="card">
-      <div class="top">
-        <div>
-          <h1 id="title">Cronance – Menedżer Finansowy</h1>
-          <p class="subtitle" id="subtitle">Pobierz aplikację z Google Play.</p>
-        </div>
-
-        <div class="lang" role="group" aria-label="Wybór języka">
-          <button type="button" data-lang="pl" aria-pressed="true">PL</button>
-          <button type="button" data-lang="en" aria-pressed="false">EN</button>
-          <button type="button" data-lang="ua" aria-pressed="false">UA</button>
-        </div>
+<body>
+  <main class="card">
+    <div class="top">
+      <div>
+        <h1 id="title">Cronance – Menedżer Finansowy</h1>
+        <p class="subtitle" id="subtitle">
+          Prosty sposób na kontrolę codziennych wydatków.
+        </p>
       </div>
-
-      <div class="linkBox">
-        <a
-          class="store"
-          id="storeLink"
-          href="https://play.google.com/store/apps/details?id=com.ajyr.green.cronance&hl=pl"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Otwórz w Google Play
-        </a>
-        <span class="small" id="hint">Link otworzy się w nowej karcie.</span>
+      <div class="lang">
+        <button data-lang="pl" aria-pressed="true">PL</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="ua">UA</button>
       </div>
-    </main>
+    </div>
 
-    <script>
-      const t = {
-        pl: {
-          title: "Cronance – Menedżer Finansowy",
-          subtitle: "Pobierz aplikację z Google Play.",
-          link: "Otwórz w Google Play",
-          hint: "Link otworzy się w nowej karcie.",
-          lang: "pl"
-        },
-        en: {
-          title: "Cronance – Finance Manager",
-          subtitle: "Get the app on Google Play.",
-          link: "Open on Google Play",
-          hint: "The link will open in a new tab.",
-          lang: "en"
-        },
-        ua: {
-          title: "Cronance — Фінансовий менеджер",
-          subtitle: "Завантажте застосунок у Google Play.",
-          link: "Відкрити в Google Play",
-          hint: "Посилання відкриється в новій вкладці.",
-          lang: "uk"
-        }
-      };
+    <div class="content" id="content"></div>
 
-      const titleEl = document.getElementById("title");
-      const subtitleEl = document.getElementById("subtitle");
-      const linkEl = document.getElementById("storeLink");
-      const hintEl = document.getElementById("hint");
-      const buttons = document.querySelectorAll(".lang button");
+    <div class="storeBox">
+      <a id="storeLink"
+         href="https://play.google.com/store/apps/details?id=com.ajyr.green.cronance&hl=pl"
+         target="_blank" rel="noopener">
+        Otwórz w Google Play
+      </a>
+    </div>
+  </main>
 
-      function setLang(lang) {
-        const d = t[lang] || t.pl;
-        titleEl.textContent = d.title;
-        subtitleEl.textContent = d.subtitle;
-        linkEl.textContent = d.link;
-        hintEl.textContent = d.hint;
-        document.documentElement.lang = d.lang;
+<script>
+const data = {
+  pl: {
+    title: "Cronance – Menedżer Finansowy",
+    subtitle: "Prosty sposób na kontrolę codziennych wydatków.",
+    content: `
+Cronance to przejrzysty menedżer finansów dla osób, które chcą po prostu wiedzieć,
+na co idą ich pieniądze. Bez kont, logowania i chmury – wszystkie dane zapisywane
+są lokalnie na Twoim urządzeniu.
 
-        buttons.forEach(b =>
-          b.setAttribute("aria-pressed", b.dataset.lang === lang)
-        );
+<h2>Najważniejsze funkcje</h2>
+<ul>
+  <li>szybkie dodawanie przychodów i wydatków z kategoriami i notatkami,</li>
+  <li>czytelne listy i podsumowania wydatków,</li>
+  <li>dołączanie zdjęć (np. paragonów) do wybranych wpisów,</li>
+  <li>eksport i import danych do pliku.</li>
+</ul>
 
-        localStorage.setItem("cronance_lang", lang);
-      }
+<h2>Prywatność i prostota</h2>
+<ul>
+  <li>brak rejestracji i konta,</li>
+  <li>dane pozostają wyłącznie na Twoim urządzeniu,</li>
+  <li>brak paywalla – wszystkie funkcje są darmowe.</li>
+</ul>
 
-      buttons.forEach(b =>
-        b.addEventListener("click", () => setLang(b.dataset.lang))
-      );
+<h2>Dodatkowa mini-gra</h2>
+<ul>
+  <li>opcjonalna mini-gra z wirtualnym krokodylem,</li>
+  <li>punkty zdobywane poprzez dobrowolne reklamy wideo,</li>
+  <li>nie wpływa na działanie aplikacji finansowej.</li>
+</ul>
 
-      setLang(localStorage.getItem("cronance_lang") || "pl");
-    </script>
-  </body>
+Cronance pomaga ogarnąć budżet bez zbędnych komplikacji.
+`,
+    hl: "pl"
+  },
+
+  en: {
+    title: "Cronance – Finance Manager",
+    subtitle: "A simple way to understand your daily spending.",
+    content: `
+Cronance is a clear and simple finance manager for people who just want to know
+where their money goes. No accounts, no login, no cloud – all data is stored locally
+on your device.
+
+<h2>Main features</h2>
+<ul>
+  <li>quick income and expense entries with categories and notes,</li>
+  <li>clear lists and summaries of your spending,</li>
+  <li>attach photos (receipts or products) to selected entries,</li>
+  <li>export and import data to a file.</li>
+</ul>
+
+<h2>Privacy & simplicity</h2>
+<ul>
+  <li>no registration or account required,</li>
+  <li>financial data never leaves your device,</li>
+  <li>no paywall – all features are free.</li>
+</ul>
+
+<h2>Optional mini-game</h2>
+<ul>
+  <li>a mini-game with a virtual crocodile,</li>
+  <li>earn points by watching optional video ads,</li>
+  <li>completely separate from the finance features.</li>
+</ul>
+
+Cronance helps you manage your budget without unnecessary complexity.
+`,
+    hl: "en"
+  },
+
+  ua: {
+    title: "Cronance — Фінансовий менеджер",
+    subtitle: "Простий спосіб контролювати щоденні витрати.",
+    content: `
+Cronance — це зрозумілий фінансовий менеджер для тих, хто хоче знати,
+куди витрачаються гроші. Без реєстрації, входу та хмари — усі дані
+зберігаються локально на вашому пристрої.
+
+<h2>Основні функції</h2>
+<ul>
+  <li>швидке додавання доходів і витрат з категоріями та нотатками,</li>
+  <li>наочні списки та підсумки витрат,</li>
+  <li>додавання фото (чеків або товарів) до записів,</li>
+  <li>експорт та імпорт даних у файл.</li>
+</ul>
+
+<h2>Приватність і простота</h2>
+<ul>
+  <li>без реєстрації та акаунтів,</li>
+  <li>дані залишаються лише на вашому пристрої,</li>
+  <li>без paywall — усі функції безкоштовні.</li>
+</ul>
+
+<h2>Додаткова міні-гра</h2>
+<ul>
+  <li>опціональна міні-гра з віртуальним крокодилом,</li>
+  <li>отримання балів за добровільний перегляд відеореклами,</li>
+  <li>не впливає на основний функціонал застосунку.</li>
+</ul>
+
+Cronance допомагає керувати бюджетом без зайвих ускладнень.
+`,
+    hl: "uk"
+  }
+};
+
+const titleEl = document.getElementById("title");
+const subtitleEl = document.getElementById("subtitle");
+const contentEl = document.getElementById("content");
+const storeLink = document.getElementById("storeLink");
+const buttons = document.querySelectorAll(".lang button");
+
+function setLang(lang){
+  const d = data[lang];
+  titleEl.textContent = d.title;
+  subtitleEl.textContent = d.subtitle;
+  contentEl.innerHTML = d.content;
+  storeLink.href = `https://play.google.com/store/apps/details?id=com.ajyr.green.cronance&hl=${d.hl}`;
+  document.documentElement.lang = lang;
+  buttons.forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  localStorage.setItem("cronance_lang", lang);
+}
+
+buttons.forEach(b => b.addEventListener("click", () => setLang(b.dataset.lang)));
+setLang(localStorage.getItem("cronance_lang") || "pl");
+</script>
+</body>
 </html>
